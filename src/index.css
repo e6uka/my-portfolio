@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -12,11 +10,10 @@
 
 html {
   scroll-behavior: smooth;
-  cursor: none;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   background-color: #0f172a;
@@ -121,6 +118,21 @@ a:focus {
 .transform-gpu {
   transform: translateZ(0);
   will-change: transform;
+}
+
+/* Chrome-specific fixes */
+@supports (-webkit-appearance: none) {
+  /* Fix for Chrome rendering issues */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Fix for Chrome transform issues */
+  .transform-gpu {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
 }
 
 /* Accessibility improvements */

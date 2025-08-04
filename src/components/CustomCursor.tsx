@@ -39,7 +39,7 @@ const CustomCursor: React.FC = () => {
 
   return (
     <div
-      className={`fixed pointer-events-none z-50 mix-blend-difference transition-transform duration-200 ${
+      className={`fixed pointer-events-none z-50 transition-transform duration-200 ${
         isHovering ? 'scale-150' : 'scale-100'
       }`}
       style={{

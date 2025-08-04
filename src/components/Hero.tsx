@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
           }`}
         >
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="block bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent animate-shimmer">
+            <span className="block bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
               Creative
             </span>
             <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">

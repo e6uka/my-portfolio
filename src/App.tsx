@@ -6,8 +6,8 @@ import Projects from './components/Projects';
 import About from './components/About';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
-import CustomCursor from './components/CustomCursor';
 import ScrollReveal from './components/ScrollReveal';
+import ClickSpark from './components/ClickSpark';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,30 +30,31 @@ function App() {
     <>
       {showLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
       
-      <div className="min-h-screen bg-slate-900 text-white overflow-x-hidden">
-      <CustomCursor />
-      <Header />
-      
-      <main className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <Hero />
+      <ClickSpark sparkColor="#3b82f6" sparkCount={12} sparkRadius={20} duration={600}>
+        <div className="min-h-screen bg-slate-900 text-white overflow-x-hidden">
+        <Header />
         
-        <ScrollReveal>
-          <Projects />
-        </ScrollReveal>
-        
-        <ScrollReveal>
-          <About />
-        </ScrollReveal>
-        
-        <ScrollReveal>
-          <Skills />
-        </ScrollReveal>
-        
-        <ScrollReveal>
-          <Contact />
-        </ScrollReveal>
-      </main>
-    </div>
+        <main className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+          <Hero />
+          
+          <ScrollReveal>
+            <Projects />
+          </ScrollReveal>
+          
+          <ScrollReveal>
+            <About />
+          </ScrollReveal>
+          
+          <ScrollReveal>
+            <Skills />
+          </ScrollReveal>
+          
+          <ScrollReveal>
+            <Contact />
+          </ScrollReveal>
+        </main>
+      </div>
+      </ClickSpark>
     </>
   );
 }
