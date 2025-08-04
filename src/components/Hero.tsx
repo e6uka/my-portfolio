@@ -107,10 +107,9 @@ const Hero: React.FC = () => {
             }`}
           >
             <ProfileCard
-              avatarUrl="/src/assets/1.jpg"
+              avatarUrl="/src/assets/11.jpg"
               name="Chukwuebuka C. Okeke"
               title="Software Developer"
-              handle="e6uka"
             />
           </div>
         </div>
