@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 import RotatingText from './RotatingText';
+import ProfileCard from './ProfileCard';
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -97,9 +98,25 @@ const Hero: React.FC = () => {
             </button>
           </div>
         </div>
+
+        {/* Profile Card on the right */}
+        <div className="hidden md:flex w-full md:w-1/2 justify-end items-center">
+          <div
+            className={`transition-all duration-1000 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <ProfileCard
+              avatarUrl="/src/assets/1.jpg"
+              name="Chukwuebuka C. Okeke"
+              title="Software Developer"
+              handle="e6uka"
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Scroll Indicator */}
+
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <ChevronDown
           className="w-6 h-6 text-slate-400 animate-bounce cursor-pointer interactive"
