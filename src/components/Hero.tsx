@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import RotatingText from './RotatingText';
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,12 +31,22 @@ const Hero: React.FC = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="block bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 flex flex-row items-center justify-center gap-4">
+            <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
               Creative
             </span>
-            <span className="block bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text text-transparent">
-              Developer
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text ">
+              <RotatingText
+                texts={["coding", "components!", "thinking", "development"]}
+                rotationInterval={3500}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-100%", opacity: 0 }}
+                staggerDuration={0.05}
+                splitBy="characters"
+                mainClassName="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text "
+              />
             </span>
           </h1>
         </div>
