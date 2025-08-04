@@ -42,22 +42,32 @@ body {
   }
 }
 
-/* Custom scrollbar */
+/* Hide scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 0px;
+  height: 0px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 4px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: transparent;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* IE/Edge */
+body {
+  -ms-overflow-style: none;
 }
 
 /* Selection styles */

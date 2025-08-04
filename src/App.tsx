@@ -31,7 +31,7 @@ function App() {
       {showLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
       
       <ClickSpark sparkColor="#3b82f6" sparkCount={12} sparkRadius={20} duration={600}>
-        <div className="min-h-screen bg-slate-900 text-white overflow-x-hidden">
+        <div className="min-h-screen bg-slate-900 text-white overflow-x-hidden overflow-y-auto">
         <Header />
         
         <main className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
