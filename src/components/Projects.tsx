@@ -22,7 +22,7 @@ const Projects: React.FC = () => {
       description: "Modern e-commerce solution with React, Node.js, and Stripe integration",
       image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
       technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      featured: true
+      featured: true,
     },
     {
       id: 2,

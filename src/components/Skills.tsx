@@ -10,14 +10,15 @@ const Skills: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const skills: Skill[] = [
-    { name: "React", level: 95, category: "Frontend" },
-    { name: "TypeScript", level: 90, category: "Frontend" },
-    { name: "Node.js", level: 85, category: "Backend" },
-    { name: "Python", level: 80, category: "Backend" },
-    { name: "PostgreSQL", level: 85, category: "Database" },
-    { name: "MongoDB", level: 80, category: "Database" },
-    { name: "AWS", level: 75, category: "DevOps" },
-    { name: "Docker", level: 70, category: "DevOps" }
+    { name: "React", level: 85, category: "Frontend" },
+    { name: "React native", level: 95, category: "Frontend" },
+    // { name: "TypeScript", level: 90, category: "Frontend" },
+    { name: "Node.js", level: 1, category: "Backend" },
+    { name: "Python", level: 1, category: "Backend" },
+    { name: "PostgreSQL", level: 1, category: "Database" },
+    { name: "MongoDB", level: 1, category: "Database" },
+    { name: "AWS", level: 15, category: "DevOps" },
+    { name: "Docker", level: 7, category: "DevOps" }
   ];
 
   const categories = ["Frontend", "Backend", "Database", "DevOps"];
@@ -98,10 +99,10 @@ const Skills: React.FC = () => {
           
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              "JavaScript", "React", "Vue.js", "Angular", "Node.js", "Express.js",
-              "Next.js", "Nuxt.js", "TypeScript", "Python", "Django", "FastAPI",
-              "PostgreSQL", "MongoDB", "Redis", "AWS", "Docker", "Kubernetes",
-              "Git", "GitHub", "GitLab", "Figma", "Adobe XD", "Tailwind CSS"
+              "JavaScript", "React", "Vue.js", "Angular", "Node.js",
+              "Next.js", "Nuxt.js", "TypeScript", 
+               "Redis", "AWS", "Docker", 'React native', 'ai',
+              "Git", "GitHub", "GitLab", "Figma", "Tailwind CSS"
             ].map((tech, index) => (
               <span
                 key={tech}

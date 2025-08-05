@@ -48,7 +48,8 @@ const Contact: React.FC = () => {
           {/* Contact Info */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <div className="flex items-center gap-4 p-4 bg-slate-900/50 rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-200 interactive">
+              <a href='mailto:clintonokeke56@gmail.com' 
+              className="flex items-center gap-4 p-4 bg-slate-900/50 rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-200 interactive">
                 <div className="p-3 bg-blue-500/20 rounded-full">
                   <Mail className="w-6 h-6 text-blue-400" />
                 </div>
@@ -56,9 +57,10 @@ const Contact: React.FC = () => {
                   <h3 className="font-semibold text-lg">Email</h3>
                   <p className="text-slate-300">clintonokeke56@gmail.com</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-4 p-4 bg-slate-900/50 rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-200 interactive">
+              <a href='tel:+2348107099231' 
+              className="flex items-center gap-4 p-4 bg-slate-900/50 rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-200 interactive">
                 <div className="p-3 bg-blue-500/20 rounded-full">
                   <Phone className="w-6 h-6 text-blue-400" />
                 </div>
@@ -66,7 +68,7 @@ const Contact: React.FC = () => {
                   <h3 className="font-semibold text-lg">Phone</h3>
                   <p className="text-slate-300">+234 8107099231</p>
                 </div>
-              </div>
+              </a>
 
               <div className="flex items-center gap-4 p-4 bg-slate-900/50 rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-200 interactive">
                 <div className="p-3 bg-blue-500/20 rounded-full">

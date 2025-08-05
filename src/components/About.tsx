@@ -36,10 +36,10 @@ const About: React.FC = () => {
             
             <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
               <p>
-                I'm a passionate full-stack developer with over 5 years of experience 
-                creating digital solutions that make a difference. My journey started 
-                with curiosity about how websites work, and it has evolved into a love 
-                for crafting exceptional user experiences.
+              Hi, I'm Ebuka, a frontend developer with a product-first mindset. 
+              I specialize in crafting intuitive user interfaces and turning complex ideas into seamless, 
+              user-friendly experiences. My approach goes beyond writing code — I think deeply about how products should feel, 
+              how users interact with them, and how technology can solve real problems at scale.
               </p>
               
               <p>
