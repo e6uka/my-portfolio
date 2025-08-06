@@ -1,3 +1,4 @@
+import ThemeToggle from './ThemeToggle';
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import GlassSurface from './GlassSurface';
@@ -52,13 +53,15 @@ const Header: React.FC = () => {
               e6uka's Portfolio
             </div>
 
+            <ThemeToggle />
+
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               {['home', 'projects', 'about me', 'skills', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.replace(' ', ''))}
-                  className="interactive capitalize hover:text-blue-400 transition-colors duration-200 relative group text-white"
+                  className="interactive capitalize hover:text-blue-400 transition-colors duration-200 relative group text-current"
                 >
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-200 group-hover:w-full" />
