@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronDown, Github, Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import RotatingText from './RotatingText';
 import ProfileCard from './ProfileCard';
 
@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
       className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
     >
       {/* Background Animation */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 ">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
@@ -88,12 +88,12 @@ const Hero: React.FC = () => {
               >
                 <Twitter className="w-6 h-6 group-hover:text-blue-400 transition-colors" />
               </a>
-              <a
+              {/* <a
                 href="https://www.instagram.com/bukysgram/"
                 className="interactive p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-all duration-200 hover:scale-110 group"
               >
                 <Instagram className="w-6 h-6 group-hover:text-blue-400 transition-colors" />
-              </a>
+              </a> */}
               <a
                 href="mailto:clintonokeke56@gmail.com"
                 className="interactive p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-all duration-200 hover:scale-110 group"
@@ -121,7 +121,7 @@ const Hero: React.FC = () => {
             <ProfileCard
               avatarUrl="/src/assets/1.jpg"
               name=""
-              title="" behindGradient={undefined} innerGradient={undefined} miniAvatarUrl={undefined} onContactClick={undefined}/>
+              title="" innerGradient={undefined} miniAvatarUrl={undefined} onContactClick={undefined}/>
           </div>
         </div>
       </div>

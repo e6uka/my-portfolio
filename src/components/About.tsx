@@ -26,7 +26,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 px-6 bg-slate-800/30">
+    <section id="aboutme" className="py-20 px-6 bg-slate-800/30">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>

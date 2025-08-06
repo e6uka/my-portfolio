@@ -37,9 +37,7 @@ const ProfileCardComponent = ({
   avatarUrl = "<Placeholder for avatar URL>",
   iconUrl = "<Placeholder for icon URL>",
   grainUrl = "<Placeholder for grain URL>",
-  behindGradient,
   innerGradient,
-  showBehindGradient = true,
   className = "",
   enableTilt = true,
   enableMobileTilt = false,
@@ -159,8 +157,6 @@ const ProfileCardComponent = ({
     if (!card || !wrap || !animationHandlers) return;
 
     animationHandlers.cancelAnimation();
-    wrap.classList.add("active");
-    card.classList.add("active");
   }, [animationHandlers]);
 
   const handlePointerLeave = useCallback(
@@ -177,8 +173,6 @@ const ProfileCardComponent = ({
         card,
         wrap
       );
-      wrap.classList.remove("active");
-      card.classList.remove("active");
     },
     [animationHandlers]
   );
@@ -272,12 +266,10 @@ const ProfileCardComponent = ({
     ({
       "--icon": iconUrl ? `url(${iconUrl})` : "none",
       "--grain": grainUrl ? `url(${grainUrl})` : "none",
-      "--behind-gradient": showBehindGradient
-        ? (behindGradient ?? DEFAULT_BEHIND_GRADIENT)
-        : "none",
+      "--behind-gradient": "none",
       "--inner-gradient": innerGradient ?? DEFAULT_INNER_GRADIENT,
     }),
-    [iconUrl, grainUrl, showBehindGradient, behindGradient, innerGradient]
+    [iconUrl, grainUrl, innerGradient]
   );
 
 
@@ -289,8 +281,6 @@ const ProfileCardComponent = ({
     >
       <section ref={cardRef} className="pc-card">
         <div className="pc-inside">
-          <div className="pc-shine" />
-          <div className="pc-glare" />
           <div className="pc-content pc-avatar-content">
             <img
               className="avatar"
