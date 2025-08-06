@@ -27,7 +27,7 @@ const Header: React.FC = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-40 flex justify-center items-start pt-4">
       <GlassSurface
-        width="60%"
+        width="65%"
         height={isScrolled ? 70 : 70}
         borderRadius={18}
         borderWidth={0.05}
@@ -53,7 +53,9 @@ const Header: React.FC = () => {
               e6uka's Portfolio
             </div>
 
+            <div className='mr-auto pl-2 mt-2 hover:rounded' >
             <ThemeToggle />
+            </div>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
