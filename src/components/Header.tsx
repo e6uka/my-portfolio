@@ -30,7 +30,7 @@ const Header: React.FC = () => {
         width="65%"
         height={isScrolled ? 55 : 70}
         borderRadius={18}
-        borderWidth={0.05}
+        borderWidth={0}
         brightness={60}
         opacity={0.5}
         blur={1}

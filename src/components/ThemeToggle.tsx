@@ -8,7 +8,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="interactive  dark:bg-gray-800 text-white-800 dark:text-gray-200"
+      className="interactive animate-bounce-periodically dark:bg-gray-800 text-white-800 dark:text-gray-200"
     >
       {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
     </button>
