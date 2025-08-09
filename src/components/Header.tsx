@@ -86,9 +86,9 @@ const Header: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               className={`md:hidden interactive p-2 ${theme === 'light' ? 'text-black' : 'text-white'}`}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => setIsMobileMenuOpen(true)}
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <Menu size={24} />
             </button>
           </div>
 
@@ -105,7 +105,7 @@ const Header: React.FC = () => {
       {/* Mobile Menu */}
       {isMobile && (
         <div
-          className={`fixed top-0 right-0 h-full w-64 transform transition-transform duration-300 ease-in-out z-50
+          className={`fixed top-0 right-0 h-full w-32 transform transition-transform duration-300 ease-in-out z-50
             ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
             ${theme === 'light' ? 'bg-gray-100/95' : 'bg-slate-900/95'} backdrop-blur-md border-l border-slate-700/50`}
         >
