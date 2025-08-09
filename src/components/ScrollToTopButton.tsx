@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
+import GlassSurface from './GlassSurface';
+import { useTheme } from './ThemeProvider';
 import './ScrollToTopButton.css';
 
 const ScrollToTopButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { theme } = useTheme();
 
   // Show button when page is scrolled beyond hero section
   const toggleVisibility = () => {
@@ -33,9 +36,27 @@ const ScrollToTopButton: React.FC = () => {
 
   return (
     <div className={`scroll-to-top ${isVisible ? 'show' : ''}`}>
-      <button onClick={scrollToTop} aria-label="Scroll to top">
-        <ArrowUp size={24} />
-      </button>
+      <GlassSurface
+        width={50}
+        height={50}
+        borderRadius={50}
+        borderWidth={0}
+        brightness={theme === 'light' ? 100 : 60}
+        opacity={0.5}
+        blur={1}
+        displace={0}
+        backgroundOpacity={0}
+        saturation={1.2}
+        distortionScale={2}
+        redOffset={0}
+        greenOffset={8}
+        blueOffset={16}
+        mixBlendMode="normal"
+      >
+        <button onClick={scrollToTop} aria-label="Scroll to top">
+          <ArrowUp size={24} />
+        </button>
+      </GlassSurface>
     </div>
   );
 };

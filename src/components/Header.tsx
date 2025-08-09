@@ -92,23 +92,35 @@ const Header: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className={`md:hidden absolute top-full left-0 right-0 ${theme === 'light' ? 'bg-gray-100/95' : 'bg-slate-900/95'} backdrop-blur-md border-b border-slate-700/50`}>
-              <div className="px-6 py-4 space-y-4">
-                {['home', 'projects', 'about me', 'skills', 'contact'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item.replace(' ', ''))}
-                    className={`block w-full text-left capitalize hover:text-blue-400 transition-colors duration-200 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
-                    {item}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </nav>
+          </nav>
       </GlassSurface>
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && isMobile && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsMobileMenuOpen(false)}
+        ></div>
+      )}
+
+      {/* Mobile Menu */}
+      {isMobile && (
+        <div
+          className={`fixed top-0 right-0 h-full w-64 transform transition-transform duration-300 ease-in-out z-50
+            ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+            ${theme === 'light' ? 'bg-gray-100/95' : 'bg-slate-900/95'} backdrop-blur-md border-l border-slate-700/50`}
+        >
+          <div className="px-6 py-4 space-y-4 pt-20"> {/* Added pt-20 for spacing from top */}
+            {['home', 'projects', 'about me', 'skills', 'contact'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item.replace(' ', ''))}
+                className={`block w-full text-left capitalize hover:text-blue-400 transition-colors duration-200 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
   );
 };
