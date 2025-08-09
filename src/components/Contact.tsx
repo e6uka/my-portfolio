@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Mail, MapPin, MessageSquare, Send } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
 const Contact: React.FC = () => {
@@ -64,18 +64,18 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h3 className={`font-semibold text-lg ${textColorClass}`}>Email</h3>
-                  <p className={textColorClass}>clintonokeke56@gmail.com</p>
+                  <p className={textColorClass}>Send an Email</p>
                 </div>
               </a>
 
-              <a href='tel:+2348107099231' 
+              <a href='https://t.me/e6uk4' 
               className={`flex items-center gap-4 p-4 rounded-xl border hover:border-blue-500/50 transition-all duration-200 interactive ${inputBgClass} ${inputBorderClass}`}>
                 <div className="p-3 bg-blue-500/20 rounded-full">
-                  <Phone className="w-6 h-6 text-blue-400" />
+                  <MessageSquare className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <h3 className={`font-semibold text-lg ${textColorClass}`}>Phone</h3>
-                  <p className={textColorClass}>+234 8107099231</p>
+                  <h3  className={`font-semibold text-lg ${textColorClass}`}>Telegram</h3>
+                  <p className={textColorClass}>Chat with me</p>
                 </div>
               </a>
 
@@ -114,7 +114,7 @@ const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-white ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                   placeholder="John Doe"
                 />
               </div>
@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-white ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                   placeholder="john@example.com"
                 />
               </div>
@@ -147,7 +147,7 @@ const Contact: React.FC = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-white ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
+                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                 placeholder="Project Discussion"
               />
             </div>
@@ -163,7 +163,7 @@ const Contact: React.FC = () => {
                 onChange={handleChange}
                 required
                 rows={6}
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-white resize-none ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
+                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} resize-none ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                 placeholder="Tell me about your project..."
               />
             </div>

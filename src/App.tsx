@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import ScrollReveal from './components/ScrollReveal';
 import ClickSpark from './components/ClickSpark';
 import { useTheme } from './components/ThemeProvider';
+import ScrollToTopButton from './components/ScrollToTopButton';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -57,6 +58,7 @@ function App() {
         </main>
       </div>
       </ClickSpark>
+      <ScrollToTopButton />
     </>
   );
 }

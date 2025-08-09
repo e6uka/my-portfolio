@@ -39,7 +39,7 @@ const Header: React.FC = () => {
         displace={0}
         backgroundOpacity={0}
         saturation={1.2}
-        distortionScale={0}
+        distortionScale={2}
         redOffset={0}
         greenOffset={8}
         blueOffset={16}
