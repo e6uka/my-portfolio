@@ -1,7 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Code, Palette, Rocket, Users } from 'lucide-react';
+import { useTheme } from './ThemeProvider';
+
+const FeatureCard = styled.div`
+  background-color: ${({ theme }) => theme.card.background};
+  border: 1px solid ${({ theme }) => theme.card.borderColor};
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.card.hoverBorderColor};
+  }
+`;
 
 const About: React.FC = () => {
+  const { theme } = useTheme();
+
   const features = [
     {
       icon: <Code className="w-8 h-8" />,
@@ -11,7 +23,7 @@ const About: React.FC = () => {
     {
       icon: <Palette className="w-8 h-8" />,
       title: "Design Focus",
-      description: "Creating beautiful, user-centered designs that enhance the user experience."
+      description: "Creating beautiful, user-centered designs that enhance user experience."
     },
     {
       icon: <Rocket className="w-8 h-8" />,
@@ -25,8 +37,13 @@ const About: React.FC = () => {
     }
   ];
 
+  const textColorClass = theme === 'light' ? 'text-slate-900' : 'text-slate-300';
+  const featureTitleColorClass = theme === 'light' ? 'text-slate-900' : 'text-white';
+  const featureDescriptionColorClass = theme === 'light' ? 'text-slate-700' : 'text-slate-300';
+  const sectionBgClass = theme === 'light' ? 'bg-[#c7c7c7]' : '';
+
   return (
-    <section id="aboutme" className="py-20 px-6 bg-slate-800/30">
+    <section id="aboutme" className={`py-20 px-6 ${sectionBgClass}`}>
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -34,7 +51,7 @@ const About: React.FC = () => {
               About Me
             </h2>
             
-            <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
+            <div className={`space-y-6 text-lg ${textColorClass} leading-relaxed`}>
               <p>
               Hi, I'm Ebuka, a frontend developer with a product-first mindset. 
               I specialize in crafting intuitive user interfaces and turning complex ideas into seamless, 
@@ -59,9 +76,9 @@ const About: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {features.map((feature, index) => (
-              <div
+              <FeatureCard
                 key={feature.title}
-                className="group p-6 bg-slate-900/50 backdrop-blur-sm rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 interactive"
+                className={`group p-6 backdrop-blur-sm rounded-xl transition-all duration-300 hover:scale-105 interactive`}
                 style={{
                   animationDelay: `${index * 100}ms`
                 }}
@@ -69,13 +86,13 @@ const About: React.FC = () => {
                 <div className="text-blue-400 mb-4 group-hover:scale-110 transition-transform duration-200">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-400 transition-colors">
+                <h3 className={`text-xl font-semibold mb-3 group-hover:text-blue-400 transition-colors ${featureTitleColorClass}`}>
                   {feature.title}
                 </h3>
-                <p className="text-slate-300 leading-relaxed">
+                <p className={`${featureDescriptionColorClass} leading-relaxed`}>
                   {feature.description}
                 </p>
-              </div>
+              </FeatureCard>
             ))}
           </div>
         </div>

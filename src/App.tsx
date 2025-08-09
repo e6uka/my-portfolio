@@ -8,7 +8,7 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import ScrollReveal from './components/ScrollReveal';
 import ClickSpark from './components/ClickSpark';
-import { useTheme } from './hooks/useTheme';
+import { useTheme } from './components/ThemeProvider';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);

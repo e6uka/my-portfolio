@@ -18,7 +18,7 @@ function cn(...classes: (string | undefined | null | false)[]) {
 
 interface RotatingTextProps {
   texts: string[];
-  transition?: any;
+  transition?: string;
   initial?: any;
   animate?: any;
   exit?: any;
@@ -37,7 +37,7 @@ interface RotatingTextProps {
   [key: string]: any;
 }
 
-const RotatingText = forwardRef<any, RotatingTextProps>((props, ref) => {
+const RotatingText = forwardRef<string, RotatingTextProps>((props, ref) => {
   const {
     texts,
     transition = { type: "spring", damping: 25, stiffness: 300 },

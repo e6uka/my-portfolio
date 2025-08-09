@@ -133,7 +133,6 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     extraScale,
   ]);
 
-  // Add global click listener to ensure sparks work everywhere
   useEffect(() => {
     const handleGlobalClick = (e: MouseEvent) => {
       const canvas = canvasRef.current;
@@ -154,50 +153,11 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     };
 
     document.addEventListener('click', handleGlobalClick);
-    document.addEventListener('mousedown', handleGlobalClick);
 
     return () => {
       document.removeEventListener('click', handleGlobalClick);
-      document.removeEventListener('mousedown', handleGlobalClick);
     };
   }, [sparkCount]);
-
-  const handleClick = (e: React.MouseEvent) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const now = performance.now();
-    const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
-      x,
-      y,
-      angle: (2 * Math.PI * i) / sparkCount,
-      startTime: now,
-    }));
-
-    sparksRef.current.push(...newSparks);
-  };
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    // Also trigger on mouse down for better responsiveness
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const now = performance.now();
-    const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
-      x,
-      y,
-      angle: (2 * Math.PI * i) / sparkCount,
-      startTime: now,
-    }));
-
-    sparksRef.current.push(...newSparks);
-  };
 
   return (
     <div 
@@ -206,8 +166,6 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         width: '100%',
         height: '100%'
       }}
-      onClick={handleClick}
-      onMouseDown={handleMouseDown}
     >
       <canvas
         ref={canvasRef}
@@ -219,6 +177,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
           position: "absolute",
           top: 0,
           left: 0,
+          zIndex: 999,
           pointerEvents: "none"
         }}
       />
@@ -227,4 +186,4 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
   );
 };
 
-export default ClickSpark; 
+export default ClickSpark;

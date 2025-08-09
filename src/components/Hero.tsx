@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import RotatingText from './RotatingText';
 import ProfileCard from './ProfileCard';
+import { useTheme } from './ThemeProvider';
 
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 500);
@@ -12,14 +14,23 @@ const Hero: React.FC = () => {
   }, []);
 
   const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('projects')?.scrollIntoView();
   };
+
+  const heroBgClass =
+    theme === 'light'
+      ? 'bg-gradient-to-br from-gray-100 via-gray-200 to-gray-100'
+      : 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900';
+
+  const socialIconBgClass = theme === 'light' ? 'bg-gray-200/50 hover:bg-gray-300/50' : 'bg-slate-800/50 hover:bg-slate-700/50';
+
+  const creativeTextClass = theme === 'light' ? 'text-slate-900' : 'bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent';
+
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
-    >
+      className={`min-h-screen flex items-center justify-center relative ${heroBgClass}`}>
       {/* Background Animation */}
       <div className="absolute inset-0 ">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
@@ -34,7 +45,7 @@ const Hero: React.FC = () => {
             }`}
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 flex flex-row items-center gap-4">
-              <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+              <span className={creativeTextClass}>
                 Creative
               </span>
               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-blue-400 bg-clip-text ">
@@ -58,7 +69,7 @@ const Hero: React.FC = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed">
+            <p className={`text-lg md:text-xl ${theme === 'light' ? 'text-slate-700' : 'text-slate-300'} mb-8 leading-relaxed`}>
               Crafting beautiful, functional digital experiences with modern technologies.
               Passionate about clean code, user experience, and innovative solutions.
             </p>
@@ -72,31 +83,31 @@ const Hero: React.FC = () => {
             <div className="flex items-center gap-6 mb-12">
               <a
                 href="https://github.com/e6uka"
-                className="interactive p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-all duration-200 hover:scale-110 group"
+                className={`interactive p-3 ${socialIconBgClass} rounded-full transition-all duration-200 hover:scale-110 group`}
               >
                 <Github className="w-6 h-6 group-hover:text-blue-400 transition-colors" />
               </a>
               <a
                 href="https://www.linkedin.com/in/chukwuebuka-okeke-3ba66123a/"
-                className="interactive p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-all duration-200 hover:scale-110 group"
+                className={`interactive p-3 ${socialIconBgClass} rounded-full transition-all duration-200 hover:scale-110 group`}
               >
                 <Linkedin className="w-6 h-6 group-hover:text-blue-400 transition-colors" />
               </a>
               <a
                 href="https://x.com/e6uka"
-                className="interactive p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-all duration-200 hover:scale-110 group"
+                className={`interactive p-3 ${socialIconBgClass} rounded-full transition-all duration-200 hover:scale-110 group`}
               >
                 <Twitter className="w-6 h-6 group-hover:text-blue-400 transition-colors" />
               </a>
               {/* <a
                 href="https://www.instagram.com/bukysgram/"
-                className="interactive p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-all duration-200 hover:scale-110 group"
+                className={`interactive p-3 ${socialIconBgClass} rounded-full transition-all duration-200 hover:scale-110 group`}
               >
                 <Instagram className="w-6 h-6 group-hover:text-blue-400 transition-colors" />
               </a> */}
               <a
                 href="mailto:clintonokeke56@gmail.com"
-                className="interactive p-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-full transition-all duration-200 hover:scale-110 group"
+                className={`interactive p-3 ${socialIconBgClass} rounded-full transition-all duration-200 hover:scale-110 group`}
               >
                 <Mail className="w-6 h-6 group-hover:text-blue-400 transition-colors" />
               </a>
@@ -104,7 +115,7 @@ const Hero: React.FC = () => {
 
             <button
               onClick={scrollToProjects}
-              className="interactive bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-3 rounded-full font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg"
+              className="interactive bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-3 rounded-full font-semibold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
             >
               View My Work
             </button>

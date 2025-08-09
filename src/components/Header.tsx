@@ -25,10 +25,10 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 flex justify-center items-start pt-4">
+    <header className="fixed top-0 left-0 right-0 z-40 flex justify-center items-start pt-4" >
       <GlassSurface
         width="65%"
-        height={isScrolled ? 70 : 70}
+        height={isScrolled ? 55 : 70}
         borderRadius={18}
         borderWidth={0.05}
         brightness={60}
@@ -37,11 +37,11 @@ const Header: React.FC = () => {
         displace={0}
         backgroundOpacity={0}
         saturation={1.2}
-        distortionScale={-100}
+        distortionScale={0}
         redOffset={0}
         greenOffset={8}
         blueOffset={16}
-        mixBlendMode="overlay"
+        mixBlendMode="normal"
         className="transition-all duration-300"
         style={{
           borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : 'none'

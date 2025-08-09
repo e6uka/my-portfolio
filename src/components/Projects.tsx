@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { ExternalLink, Github } from 'lucide-react';
+import { useTheme } from './ThemeProvider';
 
 interface Project {
   id: number;
@@ -12,8 +14,17 @@ interface Project {
   featured?: boolean;
 }
 
+const ProjectCard = styled.div`
+  background-color: ${({ theme }) => theme.card.background};
+  border: 1px solid ${({ theme }) => theme.card.borderColor};
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.card.hoverBorderColor};
+  }
+`;
+
 const Projects: React.FC = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const { theme } = useTheme();
 
   const projects: Project[] = [
     {
@@ -22,7 +33,7 @@ const Projects: React.FC = () => {
       description: "Modern e-commerce solution with React, Node.js, and Stripe integration",
       image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800",
       technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      featured: true,
+      featured: false,
     },
     {
       id: 2,
@@ -44,7 +55,7 @@ const Projects: React.FC = () => {
       description: "Responsive portfolio with smooth animations",
       image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600",
       technologies: ["Next.js", "Framer Motion", "Tailwind CSS"],
-      featured: true
+      featured: false
     },
     {
       id: 5,
@@ -62,14 +73,19 @@ const Projects: React.FC = () => {
     }
   ];
 
+  const titleColorClass = theme === 'light' ? 'text-slate-900' : 'text-white';
+  const descriptionColorClass = theme === 'light' ? 'text-slate-700' : 'text-slate-300';
+  const techTagClass = theme === 'light' ? 'bg-gray-200/50 text-blue-600 border-gray-300/50' : 'bg-slate-700/50 text-blue-300 border-slate-600/50';
+  const hoverActionBgClass = theme === 'light' ? 'bg-gray-100/80' : 'bg-slate-900/80';
+
   return (
     <section id="projects" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 pb-1 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+          <p className={`text-xl ${theme === 'light' ? 'text-slate-900' : 'text-slate-300'} max-w-3xl mx-auto`}>
             A collection of projects that showcase my skills in modern web development,
             from concept to deployment.
           </p>
@@ -77,9 +93,9 @@ const Projects: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <div
+            <ProjectCard
               key={project.id}
-              className={`group relative bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl interactive ${
+              className={`group relative backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl interactive ${
                 project.featured ? 'md:col-span-2 lg:col-span-1' : ''
               }`}
               style={{
@@ -100,10 +116,10 @@ const Projects: React.FC = () => {
                 <div className={`absolute top-4 right-4 flex gap-2 transition-all duration-300 ${
                   hoveredProject === project.id ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
                 }`}>
-                  <button className="p-2 bg-slate-900/80 rounded-full hover:bg-blue-600 transition-colors">
+                  <button className={`p-2 ${hoverActionBgClass} rounded-full hover:bg-blue-600 transition-colors`}>
                     <Github className="w-4 h-4" />
                   </button>
-                  <button className="p-2 bg-slate-900/80 rounded-full hover:bg-blue-600 transition-colors">
+                  <button className={`p-2 ${hoverActionBgClass} rounded-full hover:bg-blue-600 transition-colors`}>
                     <ExternalLink className="w-4 h-4" />
                   </button>
                 </div>
@@ -111,7 +127,7 @@ const Projects: React.FC = () => {
 
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <h3 className="text-xl font-semibold group-hover:text-blue-400 transition-colors">
+                  <h3 className={`text-xl font-semibold group-hover:text-blue-400 transition-colors ${titleColorClass}`}>
                     {project.title}
                   </h3>
                   {project.featured && (
@@ -121,7 +137,7 @@ const Projects: React.FC = () => {
                   )}
                 </div>
                 
-                <p className="text-slate-300 mb-4 leading-relaxed">
+                <p className={`${descriptionColorClass} mb-4 leading-relaxed`}>
                   {project.description}
                 </p>
                 
@@ -129,8 +145,7 @@ const Projects: React.FC = () => {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 text-sm bg-slate-700/50 rounded-full text-blue-300 border border-slate-600/50"
-                    >
+                      className={`px-3 py-1 text-sm rounded-full border ${techTagClass}`}>
                       {tech}
                     </span>
                   ))}
@@ -141,7 +156,7 @@ const Projects: React.FC = () => {
               <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-400 rounded-full transition-all duration-300 ${
                 hoveredProject === project.id ? 'opacity-100 scale-150' : 'opacity-0 scale-0'
               }`} />
-            </div>
+            </ProjectCard>
           ))}
         </div>
       </div>
