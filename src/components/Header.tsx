@@ -7,6 +7,7 @@ import { useTheme } from './ThemeProvider';
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -14,8 +15,17 @@ const Header: React.FC = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -30,7 +40,7 @@ const Header: React.FC = () => {
     <header className="fixed top-0 left-0 right-0 z-40 flex justify-center items-start pt-4" >
       <GlassSurface
         width="65%"
-        height={isScrolled ? 55 : 70}
+        height={isMobile ? (isScrolled ? 50 : 60) : (isScrolled ? 55 : 70)}
         borderRadius={18}
         borderWidth={0}
         brightness={60}
