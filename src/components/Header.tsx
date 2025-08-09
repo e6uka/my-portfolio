@@ -2,10 +2,12 @@ import ThemeToggle from './ThemeToggle';
 import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import GlassSurface from './GlassSurface';
+import { useTheme } from './ThemeProvider';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,7 +75,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden interactive p-2 text-white"
+              className={`md:hidden interactive p-2 ${theme === 'light' ? 'text-black' : 'text-white'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -82,14 +84,13 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden absolute top-full left-0 right-0 bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50">
+            <div className={`md:hidden absolute top-full left-0 right-0 ${theme === 'light' ? 'bg-gray-100/95' : 'bg-slate-900/95'} backdrop-blur-md border-b border-slate-700/50`}>
               <div className="px-6 py-4 space-y-4">
                 {['home', 'projects', 'about me', 'skills', 'contact'].map((item) => (
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.replace(' ', ''))}
-                    className="block w-full text-left capitalize hover:text-blue-400 transition-colors duration-200"
-                  >
+                    className={`block w-full text-left capitalize hover:text-blue-400 transition-colors duration-200 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
                     {item}
                   </button>
                 ))}
