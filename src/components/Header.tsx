@@ -65,9 +65,11 @@ const Header: React.FC = () => {
               e6uka's Portfolio
             </div>
 
-            <div className='mr-auto pl-2 mt-2 hover:rounded' >
-            <ThemeToggle />
-            </div>
+            {!isMobile && (
+              <div className='mr-auto pl-2 mt-2 hover:rounded' >
+                <ThemeToggle />
+              </div>
+            )}
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
@@ -109,7 +111,14 @@ const Header: React.FC = () => {
             ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
             ${theme === 'light' ? 'bg-gray-100/95' : 'bg-slate-900/95'} backdrop-blur-md border-l border-slate-700/50`}
         >
-          <div className="px-6 py-4 space-y-4 pt-20"> {/* Added pt-20 for spacing from top */}
+          <div className="px-6 py-4 space-y-4 pt-20 relative"> {/* Added pt-20 for spacing from top */}
+            <button
+              className={`absolute top-4 right-4 interactive p-2 ${theme === 'light' ? 'text-black' : 'text-white'}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <X size={24} />
+            </button>
+            
             {['home', 'projects', 'about me', 'skills', 'contact'].map((item) => (
               <button
                 key={item}
@@ -118,6 +127,11 @@ const Header: React.FC = () => {
                 {item}
               </button>
             ))}
+            {isMobile && (
+              <div className="py-2">
+                <ThemeToggle />
+              </div>
+            )}
           </div>
         </div>
       )}
