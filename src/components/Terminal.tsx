@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const lines = [
   "$ whoami",
-  "Okeke Ebuka - Frontend Developer",
+  "Okeke Ebuka - Web & Mobile App Developer",
   "$ skills --list",
   "React, TypeScript, React native, TailwindCSS",
 //   "$ now",

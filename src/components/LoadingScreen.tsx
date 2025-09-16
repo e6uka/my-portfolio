@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Code } from 'lucide-react';
+import { Computer } from 'lucide-react';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -10,21 +10,28 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setIsComplete(true);
-          setTimeout(() => {
-            onLoadingComplete();
-          }, 500);
-          return 100;
-        }
-        return prev + Math.random() * 15 + 5;
-      });
-    }, 100);
+    let animationFrameId: number;
+    const startTime = Date.now();
+    const duration = 1500; // 1.3 seconds for progress bar
 
-    return () => clearInterval(timer);
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min((elapsed / duration) * 100, 100);
+      setProgress(progress);
+
+      if (elapsed < duration) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        setIsComplete(true);
+        setTimeout(() => {
+          onLoadingComplete();
+        }, 500); // 0.5 second fade-out
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrameId);
   }, [onLoadingComplete]);
 
   return (
@@ -39,12 +46,12 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
           <div className="w-16 h-16 mx-auto mb-4 relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl animate-pulse" />
             <div className="absolute inset-1 bg-slate-900 rounded-lg flex items-center justify-center">
-              <Code className="w-8 h-8 text-blue-400 animate-bounce" />
+              <Computer className="w-8 h-8 text-blue-400 animate-bounce" />
             </div>
           </div>
           
           <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Portfolio
+            Welcome
           </h1>
         </div>
 

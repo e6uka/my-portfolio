@@ -1,14 +1,5 @@
-"use client";
-
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from "react";
+import { motion, AnimatePresence, Transition } from "framer-motion";
 
 import "./RotatingText.css";
 
@@ -16,9 +7,16 @@ function cn(...classes: (string | undefined | null | false)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+export interface RotatingTextHandle {
+  next: () => void;
+  previous: () => void;
+  jumpTo: (index: number) => void;
+  reset: () => void;
+}
+
 interface RotatingTextProps {
   texts: string[];
-  transition?: string;
+  transition?: Transition;
   initial?: any;
   animate?: any;
   exit?: any;
@@ -34,10 +32,10 @@ interface RotatingTextProps {
   mainClassName?: string;
   splitLevelClassName?: string;
   elementLevelClassName?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
-const RotatingText = forwardRef<string, RotatingTextProps>((props, ref) => {
+const RotatingText = forwardRef<RotatingTextHandle, RotatingTextProps>((props, ref) => {
   const {
     texts,
     transition = { type: "spring", damping: 25, stiffness: 300 },
@@ -97,22 +95,32 @@ const RotatingText = forwardRef<string, RotatingTextProps>((props, ref) => {
     }));
   }, [texts, currentTextIndex, splitBy]);
 
+  const totalChars = useMemo(() => {
+    return elements.reduce((sum, word) => sum + word.characters.length, 0);
+  }, [elements]);
+
+  const randomStaggerIndex = useMemo(() => {
+    if (staggerFrom === "random") {
+      return Math.floor(Math.random() * totalChars);
+    }
+    return 0;
+  }, [currentTextIndex, staggerFrom, totalChars]);
+
   const getStaggerDelay = useCallback(
-    (index: number, totalChars: number) => {
-      const total = totalChars;
+    (index: number) => {
       if (staggerFrom === "first") return index * staggerDuration;
-      if (staggerFrom === "last") return (total - 1 - index) * staggerDuration;
+      if (staggerFrom === "last") return (totalChars - 1 - index) * staggerDuration;
       if (staggerFrom === "center") {
-        const center = Math.floor(total / 2);
+        const center = Math.floor(totalChars / 2);
         return Math.abs(center - index) * staggerDuration;
       }
       if (staggerFrom === "random") {
-        const randomIndex = Math.floor(Math.random() * total);
-        return Math.abs(randomIndex - index) * staggerDuration;
+        return Math.abs(randomStaggerIndex - index) * staggerDuration;
       }
-      return Math.abs(staggerFrom - index) * staggerDuration;
+      // Use 'as number' to handle the case where staggerFrom is a number
+      return Math.abs((staggerFrom as number) - index) * staggerDuration;
     },
-    [staggerFrom, staggerDuration]
+    [staggerFrom, staggerDuration, totalChars, randomStaggerIndex]
   );
 
   const handleIndexChange = useCallback(
@@ -213,14 +221,8 @@ const RotatingText = forwardRef<string, RotatingTextProps>((props, ref) => {
                     animate={animate}
                     exit={exit}
                     transition={{
-                      ...transition,
-                      delay: getStaggerDelay(
-                        previousCharsCount + charIndex,
-                        array.reduce(
-                          (sum, word) => sum + word.characters.length,
-                          0
-                        )
-                      ),
+                      ...(transition as object),
+                      delay: getStaggerDelay(previousCharsCount + charIndex),
                     }}
                     className={cn("text-rotate-element", elementLevelClassName)}
                   >
@@ -240,4 +242,5 @@ const RotatingText = forwardRef<string, RotatingTextProps>((props, ref) => {
 });
 
 RotatingText.displayName = "RotatingText";
-export default RotatingText; 
+export default RotatingText;
+ 

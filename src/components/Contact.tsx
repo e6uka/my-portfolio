@@ -1,37 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Mail, MapPin, MessageSquare, Send } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contact: React.FC = () => {
   const { theme } = useTheme();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [state, handleSubmit] = useForm("mqadvzdn");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    // Show success message (you could implement a toast notification here)
-    alert('Message sent successfully!');
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
-  };
 
   const sectionBgClass = theme === 'light' ? 'bg-[#c7c7c7]' : '';
   const textColorClass = theme === 'light' ? 'text-slate-900' : 'text-slate-300';
@@ -102,6 +77,7 @@ const Contact: React.FC = () => {
 
           {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+           {state.succeeded ? <p className={`text-xl ${textColorClass} max-w-3xl mx-auto`}>Thanks for your message!</p> : <>
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="name" className={`block text-sm font-medium ${textColorClass}`}>
@@ -111,28 +87,31 @@ const Contact: React.FC = () => {
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                   placeholder="John Doe"
                 />
+                 <ValidationError 
+        prefix="Name" 
+        field="name"
+        errors={state.errors}
+      />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="email" className={`block text-sm font-medium ${textColorClass}`}>
-                  Email Address
+                  Contact Detail
                 </label>
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
-                  placeholder="john@example.com"
+                  placeholder="How can I get back to you?"
                 />
+                 <ValidationError 
+        prefix="Email" 
+        field="email"
+        errors={state.errors}
+      />
               </div>
             </div>
 
@@ -144,12 +123,15 @@ const Contact: React.FC = () => {
                 type="text"
                 id="subject"
                 name="subject"
-                value={formData.subject}
-                onChange={handleChange}
                 required
                 className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                 placeholder="Project Discussion"
               />
+               <ValidationError 
+        prefix="Subject" 
+        field="subject"
+        errors={state.errors}
+      />
             </div>
 
             <div className="space-y-2">
@@ -159,21 +141,24 @@ const Contact: React.FC = () => {
               <textarea
                 id="message"
                 name="message"
-                value={formData.message}
-                onChange={handleChange}
                 required
                 rows={6}
                 className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} resize-none ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                 placeholder="Tell me about your project..."
               />
+               <ValidationError 
+        prefix="Message" 
+        field="message"
+        errors={state.errors}
+      />
             </div>
 
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={state.submitting}
               className="interactive w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 disabled:from-slate-600 disabled:to-slate-700 px-8 py-4 rounded-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg disabled:hover:scale-100 disabled:hover:shadow-none flex items-center justify-center gap-2"
             >
-              {isSubmitting ? (
+              {state.submitting ? (
                 <>
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   Sending...
@@ -185,6 +170,7 @@ const Contact: React.FC = () => {
                 </>
               )}
             </button>
+            </>}
           </form>
         </div>
       </div>

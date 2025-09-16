@@ -10,9 +10,16 @@ const Header: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { theme } = useTheme();
 
+  const [isPastHero, setIsPastHero] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const heroSection = document.getElementById('home');
+      if (heroSection) {
+        const heroHeight = heroSection.offsetHeight;
+        setIsScrolled(window.scrollY > 50);
+        setIsPastHero(window.scrollY > heroHeight);
+      }
     };
 
     const handleResize = () => {
@@ -77,7 +84,7 @@ const Header: React.FC = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.replace(' ', ''))}
-                  className="interactive capitalize hover:text-blue-400 transition-colors duration-200 relative group text-current"
+                  className={`interactive capitalize hover:text-blue-400 transition-colors duration-200 relative group ${theme === 'light' && isPastHero ? 'text-black' : 'text-white'}`}
                 >
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-200 group-hover:w-full" />
@@ -87,7 +94,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className={`md:hidden interactive p-2 ${theme === 'light' ? 'text-black' : 'text-white'}`}
+              className={`md:hidden interactive p-2 ${theme === 'light' && isPastHero ? 'text-black' : 'text-white'}`}
               onClick={() => setIsMobileMenuOpen(true)}
             >
               <Menu size={24} />
@@ -113,7 +120,7 @@ const Header: React.FC = () => {
         >
           <div className="px-6 py-4 space-y-4 pt-20 relative"> {/* Added pt-20 for spacing from top */}
             <button
-              className={`absolute top-4 right-4 interactive p-2 ${theme === 'light' ? 'text-black' : 'text-white'}`}
+              className={`absolute top-4 right-4 interactive p-2 ${theme === 'light' && isPastHero ? 'text-black' : 'text-white'}`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <X size={24} />
@@ -123,7 +130,7 @@ const Header: React.FC = () => {
               <button
                 key={item}
                 onClick={() => scrollToSection(item.replace(' ', ''))}
-                className={`block w-full text-left capitalize hover:text-blue-400 transition-colors duration-200 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
+                className={`block w-full text-left capitalize hover:text-blue-400 transition-colors duration-200 ${theme === 'light' && isPastHero ? 'text-black' : 'text-white'}`}>
                 {item}
               </button>
             ))}
@@ -134,7 +141,7 @@ const Header: React.FC = () => {
             )}
           </div>
         </div>
-      )}
+      )} 
     </header>
   );
 };
