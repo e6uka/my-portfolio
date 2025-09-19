@@ -19,7 +19,7 @@ const Contact: React.FC = () => {
     <section id="contact" className={`py-20 px-6 ${sectionBgClass}`}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h2 className="font-asimovian text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Get In Touch
           </h2>
           <p className={`text-xl ${textColorClass} max-w-3xl mx-auto`}>
@@ -87,6 +87,7 @@ const Contact: React.FC = () => {
                   type="text"
                   id="name"
                   name="name"
+                  autoComplete="name"
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                   placeholder="John Doe"
@@ -100,12 +101,15 @@ const Contact: React.FC = () => {
 
               <div className="space-y-2">
                 <label htmlFor="email" className={`block text-sm font-medium ${textColorClass}`}>
-                  Contact Detail
+                  Email
                 </label>
                 <input
+                  id="email"
+                  name="email"
+                  autoComplete="email"
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
-                  placeholder="How can I get back to you?"
+                  placeholder="j.doe@e6uka.dev"
                 />
                  <ValidationError 
         prefix="Email" 
@@ -123,6 +127,7 @@ const Contact: React.FC = () => {
                 type="text"
                 id="subject"
                 name="subject"
+                autoComplete="on"
                 required
                 className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${theme === 'light' ? 'text-slate-900' : 'text-white'} ${inputBgClass} ${inputBorderClass} ${placeholderColorClass}`}
                 placeholder="Project Discussion"

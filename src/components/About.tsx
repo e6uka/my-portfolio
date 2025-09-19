@@ -43,11 +43,11 @@ const About: React.FC = () => {
   const sectionBgClass = theme === 'light' ? 'bg-[#c7c7c7]' : '';
 
   return (
-    <section id="aboutme" className={`py-20 px-6 ${sectionBgClass}`}>
+    <section id="about" className={`py-20 px-6 ${sectionBgClass}`}>
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-asimovian md:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
               About Me
             </h2>
             

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asimovian&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,6 +13,11 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
 }
 
 body {
@@ -195,4 +203,8 @@ a:focus {
 
 .animate-bounce-periodically {
   animation: periodic-bounce 5s infinite;
+}
+
+.font-asimovian {
+  font-family: 'Asimovian', sans-serif;
 }

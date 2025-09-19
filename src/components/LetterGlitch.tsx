@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { useTheme } from "./ThemeProvider";
 
 const LetterGlitch = ({
   glitchColors = ["#2b4539", "#61dca3", "#61b3dc"],
@@ -13,6 +14,7 @@ const LetterGlitch = ({
   outerVignette: boolean;
   smooth: boolean;
 }) => {
+  const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number | null>(null);
   const letters = useRef<
@@ -278,16 +280,28 @@ const LetterGlitch = ({
   }, [glitchSpeed, smooth]);
 
   return (
-    <div className="relative w-full h-full bg-black overflow-hidden">
+    <div
+      className={`relative w-full h-full ${
+        theme === "light" ? "bg-white" : "bg-black"
+      } overflow-hidden`}
+    >
       <canvas ref={canvasRef} className="block w-full h-full" />
       {outerVignette && (
         <div
-          className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(0,0,0,1)_100%)]"
+          className={`absolute top-0 left-0 w-full h-full pointer-events-none ${
+            theme === 'light'
+              ? 'bg-[radial-gradient(circle,_rgba(255,255,255,0)_60%,_rgba(255,255,255,1)_100%)]'
+              : 'bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(0,0,0,1)_100%)]'
+          }`}
         ></div>
       )}
       {centerVignette && (
         <div
-          className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]"
+          className={`absolute top-0 left-0 w-full h-full pointer-events-none ${
+            theme === 'light'
+              ? 'bg-[radial-gradient(circle,_rgba(255,255,255,0.8)_0%,_rgba(255,255,255,0)_60%)]'
+              : 'bg-[radial-gradient(circle,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_60%)]'
+          }`}
         ></div>
       )}
     </div>

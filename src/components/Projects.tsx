@@ -82,7 +82,7 @@ const Projects: React.FC = () => {
     <section id="projects" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 pb-1 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-asimovian md:text-5xl font-bold mb-6 pb-1 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Featured Projects
           </h2>
           <p className={`text-xl ${theme === 'light' ? 'text-slate-900' : 'text-slate-300'} max-w-3xl mx-auto`}>

@@ -32,3 +32,7 @@
 .text-rotate-lines {
   display: block;
 } 
+
+.font-lobster-two {
+  font-family: 'Lobster Two', cursive;
+} 

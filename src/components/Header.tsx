@@ -10,16 +10,9 @@ const Header: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { theme } = useTheme();
 
-  const [isPastHero, setIsPastHero] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
-      const heroSection = document.getElementById('home');
-      if (heroSection) {
-        const heroHeight = heroSection.offsetHeight;
-        setIsScrolled(window.scrollY > 50);
-        setIsPastHero(window.scrollY > heroHeight);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
     const handleResize = () => {
@@ -68,7 +61,7 @@ const Header: React.FC = () => {
       >
         <nav className="w-full px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent font-asimovian">
               e6uka's Portfolio
             </div>
 
@@ -80,11 +73,11 @@ const Header: React.FC = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
-              {['home', 'projects', 'about me', 'skills', 'contact'].map((item) => (
+              {['home', 'projects', 'about', 'skills', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.replace(' ', ''))}
-                  className={`interactive capitalize hover:text-blue-400 transition-colors duration-200 relative group ${theme === 'light' && isPastHero ? 'text-black' : 'text-white'}`}
+                  className={`interactive capitalize hover:text-blue-400 transition-colors duration-200 relative group ${theme === 'light' ? 'text-black' : 'text-white'}`}
                 >
                   {item}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-200 group-hover:w-full" />
@@ -94,7 +87,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className={`md:hidden interactive p-2 ${theme === 'light' && isPastHero ? 'text-black' : 'text-white'}`}
+              className={`md:hidden interactive p-2 ${theme === 'light' ? 'text-black' : 'text-white'}`}
               onClick={() => setIsMobileMenuOpen(true)}
             >
               <Menu size={24} />
@@ -120,17 +113,17 @@ const Header: React.FC = () => {
         >
           <div className="px-6 py-4 space-y-4 pt-20 relative"> {/* Added pt-20 for spacing from top */}
             <button
-              className={`absolute top-4 right-4 interactive p-2 ${theme === 'light' && isPastHero ? 'text-black' : 'text-white'}`}
+              className={`absolute top-4 right-4 interactive p-2 ${theme === 'light' ? 'text-black' : 'text-white'}`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <X size={24} />
             </button>
             
-            {['home', 'projects', 'about me', 'skills', 'contact'].map((item) => (
+            {['home', 'projects', 'about', 'skills', 'contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.replace(' ', ''))}
-                className={`block w-full text-left capitalize hover:text-blue-400 transition-colors duration-200 ${theme === 'light' && isPastHero ? 'text-black' : 'text-white'}`}>
+                className={`block w-full text-left capitalize hover:text-blue-400 transition-colors duration-200 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
                 {item}
               </button>
             ))}
